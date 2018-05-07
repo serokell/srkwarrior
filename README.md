@@ -128,20 +128,21 @@ significant improvements in our case, making it easier and more reliable to
 query issues, track state changes (Taskwarrior is journaled), sync to a phone,
 and integrate with other tools like our YouTrack.
 
-Python is used for several reasons: the main one being that Bugwarrior is also
-written in Python, so reusing its implementation details saves a lot of work.
-Other constraints are that hook program has to start up very quickly (under
-.05s) because it is run on every Taskwarrior change, so Elixir with its 0.3s
-startup is not an option. It also seems to be preferable to have something that
-can integrate with Nix easily without long build times.
+Python is used for several reasons, the main one being that Bugwarrior is also
+written in Python, so reusing its implementation saves a ton of work. Another
+constraint is that the hook program has to start up very quickly (under .05s)
+because it is run on every Taskwarrior change, so Elixir with its 0.3s startup
+is not an option. It also seems to be preferable to have something that can
+integrate with Nix easily without long build times.
 
 ## Developer documentation
 
-* YouTrack time tracking API:
-  https://www.jetbrains.com/help/youtrack/standalone/Create-New-Work-Item.html
-* Bugwarrior YouTrack module:
-  https://github.com/ralphbean/bugwarrior/blob/develop/bugwarrior/services/youtrack.py
+* [Bugwarrior YouTrack module][bugwarrior-youtrack]
 * `task(1)`, `timew(1)` man pages
+* [YouTrack Work Item API][youtrack-work-item-api]
+
+[bugwarrior-youtrack]: https://github.com/ralphbean/bugwarrior/blob/develop/bugwarrior/services/youtrack.py
+[youtrack-work-item-api]: https://www.jetbrains.com/help/youtrack/standalone/Create-New-Work-Item.html
 
 ## Missing features
 
