@@ -4,14 +4,36 @@ Integration with Bugwarrior, Taskwarrior and Timewarrior.
 
 ## Features
 
-* Exports assigned YouTrack issues into local Taskwarrior DB
-  (run `bugwarrior-pull` and then list tasks via `task ls`)
-* Integrates Taskwarrior with Timewarrior so that when one types
-  `task /OPS-200/ start` (or `stop`) Timewarrior clocks in/out
-* Generates reports via `serokellwarrior-report` that can be annotated
-  with subitems via `task /OPS-200/ annotate "Do this and that"`
-* Tracks time into YouTrack on `serokellwarrior-export`, very unlikely
-  to clock anything twice
+Export assigned YouTrack issues into local Taskwarrior DB:
+```sh
+$ bugwarrior-pull # Synchronize YouTrack with local DB
+$ task # List tasks
+$ task project:serokell.AD # List tasks in a project
+```
+
+Integrate Taskwarrior with Timewarrior for time tracking:
+```sh
+$ task /OPS-200/ start # Clock in
+$ task /OPS-200/ stop # Clock out
+```
+
+Generate reports via `serokellwarrior-report` that can be annotated
+with subitems:
+```sh  
+$ task /OPS-200/ annotate "Do this"
+$ task /OPS-200/ annotate "Do that"
+$ serokell-report
+May 7:
+ * OPS-200 Expose deployment info
+   - Do this
+   - Do that
+```
+
+Track time into YouTrack on `serokellwarrior-export`, very unlikely
+to clock anything twice:
+```sh
+$ serokellwarrior-export
+```
 
 ## Install
 
