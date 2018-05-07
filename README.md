@@ -76,8 +76,9 @@ enter login and password that you would like to use in the RC file above.
 If you have any issues with that step (or anything regarding this program
 whatsoever), don't hesitate to drop a line at #operations channel on Slack.
 
-Pull YouTrack issues: `bugwarrior-pull`. Mind that if you live in Russia,
-RKN currently blocks our issue tracker, so use a VPN. This will be fixed soon.
+Pull YouTrack issues: `bugwarrior-pull`. Mind that if you live in Russia, RKN
+currently blocks our issue tracker, so use a VPN. Alternatively, install Tor
+and prepend `torify` command when network is required. This will be fixed soon.
 
 If that works, there is one last step:
 
