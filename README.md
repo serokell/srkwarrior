@@ -37,7 +37,9 @@ $ serokellwarrior-export
 
 ## Install
 
-Checkout and `cd` to this repository, and run `nix-env -if .`.
+If you don't have Nix set up yet, run `curl https://nixos.org/nix/install | sh`.
+
+Clone this repository, `cd` into it, run: `nix-env -if .`
 
 You will also need to install Bugwarrior, Timewarrior, and Taskwarrior. Run: 
 
