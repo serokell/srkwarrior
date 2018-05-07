@@ -41,7 +41,7 @@ Checkout and `cd` to this repository, and run `nix-env -if .`.
 
 You will also need to install Bugwarrior, Timewarrior, and Taskwarrior. Run: 
 
-```
+```sh
 nix-env -f '<nixpkgs>' -iA python3Packages.bugwarrior taskwarrior timewarrior
 ```
 
@@ -83,23 +83,18 @@ This causes considerable issues when using Org mode on more than one device
 (merge conflicts) and difficulties with manipulating/exporting/importing data,
 any integration ultimately has to be done via custom inefficient parsers.
 
-Taskwarrior, on the other hand, is a database-driven productivity tool, with a
-suite of related programs like Timewarrior and Bugwarrior. It's very easy to
-write programs that manipulate Taskwarrior, because it has JSON export.  That is
-mainly why there we can pull off reliable sync from YouTrack to local DB, which
-tracks issues not by their name or issue number but by UUID.
-
-Data-driven design seems to have significant improvements in this case, making
-it easier and more reliable to query issues, track state changes (Taskwarrior is
-journaled), sync to a phone, and integrate with other tools.
+Taskwarrior, on the other hand, is a DB-driven productivity tool, with a suite
+of related programs like Timewarrior and Bugwarrior. Its design seems to have
+significant improvements in our case, making it easier and more reliable to
+query issues, track state changes (Taskwarrior is journaled), sync to a phone,
+and integrate with other tools like our YouTrack.
 
 Python is used for several reasons: the main one being that Bugwarrior is also
-written in Python, so reusing its configuration file parser saves a lot of work,
-and there's `taskw` pip package maintained by upstream that this program might
-switch to. Other constraints are that those programs have to start up very
-quickly (under .05s) because they are supposed to hook to Taskwarrior commands,
-and preferably have something that can integrate into NixOS easily without long
-build times.
+written in Python, so reusing its implementation details saves a lot of work.
+Other constraints are that hook program has to start up very quickly (under
+.05s) because it is run on every Taskwarrior change, so Elixir with its 0.3s
+startup is not an option. It also seems to be preferable to have something that
+can integrate with Nix easily without long build times.
 
 ## Developer documentation
 
@@ -111,7 +106,7 @@ build times.
 
 ## Missing features
 
-* Sending reports to Slack is currently not automated. This is not urgent
+* Sending reports to Slack is currently not implemented. This is not urgent
   because Serokellwarrior is new and one is expected to eyeball reports before
   sending them to #team-updates channel. This feature will be added once report
   generation is proven to be reliable, though.
@@ -120,12 +115,12 @@ build times.
   sure how, ask the ops team.
 * `serokellwarrior-export` tool is not safe if anything else modifies
   Timewarrior DB while it runs. The problem here is that Timewarrior entries,
-  unlike Taskwarrior, do not have UUIDs, only relative IDs. This can be resolved
-  either by sending a patch to Timewarrior that adds UUIDs, or by locking the
-  database while export tool runs (for example, by moving the directory to
-  another place, and then moving it back, or sending patch to Timewarrior that
-  makes it lock-aware).  This issue has high priority as it has potential to
-  cause data loss.
+  unlike Taskwarrior, do not have UUIDs, only relative IDs. This can be
+  resolved either by sending a patch to Timewarrior that adds UUIDs, or by
+  locking the database while export tool runs (for example, by moving the
+  directory to another place, and then moving it back, or sending patch to
+  Timewarrior that makes it lock-aware).  This issue has high priority as it
+  has potential to cause data loss.
 * `serokellwarrior-report` tool presumes that days are the smallest report
   granularity for annotations. It means that if you generate a report that is
   supposed to only include the last 4 hours of work, it will also include
