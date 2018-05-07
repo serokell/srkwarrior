@@ -152,7 +152,7 @@ integrate with Nix easily without long build times.
   generation is proven to be reliable, though.
 * Bugwarrior doesn't currently implement token-based authentication for
   YouTrack, so you will need to create a login/password pair. If you're not
-  sure how, ask the ops team.
+  sure how, ask the operations team.
 * `serokellwarrior-export` tool is not safe if anything else modifies
   Timewarrior DB while it runs. The problem here is that Timewarrior entries,
   unlike Taskwarrior, do not have UUIDs, only relative IDs. This can be
