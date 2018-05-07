@@ -64,7 +64,7 @@ service = youtrack
 youtrack.description_template = [{{youtrackissue}}] {{youtracksummary}}
 youtrack.project_template = serokell.{{youtrackproject}}
 youtrack.host = issues.serokell.io
-youtrack.login = <your username>
+youtrack.login = <your login>
 youtrack.password = <your password>
 ```
 
@@ -151,7 +151,7 @@ integrate with Nix easily without long build times.
   sending them to #team-updates channel. This feature will be added once report
   generation is proven to be reliable, though.
 * Bugwarrior doesn't currently implement token-based authentication for
-  YouTrack, so you will need to create a username/password pair. If you're not
+  YouTrack, so you will need to create a login/password pair. If you're not
   sure how, ask the ops team.
 * `serokellwarrior-export` tool is not safe if anything else modifies
   Timewarrior DB while it runs. The problem here is that Timewarrior entries,
