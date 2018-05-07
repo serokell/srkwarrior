@@ -68,7 +68,7 @@ If you want to learn more about Taskwarrior, here are some things you might
 want to check out:
 
 * [Taskwarrior start guide][taskwarrior-start-guide]
-* ["Manage all your tasks with TaskWarrior", talk by Paul Fenwick][taskwarrior-pjf-talk]
+* ["Manage all your tasks with TaskWarrior"][taskwarrior-pjf-talk], talk by Paul Fenwick
 * Android version on [Google Play][taskwarrior-gplay] and [F-Droid][taskwarrior-fdroid]
 
 [taskwarrior-fdroid]: https://f-droid.org/en/packages/kvj.taskw/
