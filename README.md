@@ -22,7 +22,7 @@ with subitems:
 ```sh  
 $ task /OPS-200/ annotate "Do this"
 $ task /OPS-200/ annotate "Do that"
-$ serokell-report
+$ serokellwarrior-report
 May 7:
  * OPS-200 Expose deployment info
    - Do this
@@ -47,20 +47,57 @@ nix-env -f '<nixpkgs>' -iA python3Packages.bugwarrior taskwarrior timewarrior
 
 ## Setup
 
-TODO.
+Run `task` and reply `y`.
+
+Run `timew` and reply `y`.
+
+Create `~/.config/bugwarrior/bugwarriorrc` that looks like this:
+
+```
+[general]
+targets = serokell
+
+[serokell]
+service = youtrack
+youtrack.description_template = [{{youtrackissue}}] {{youtracksummary}}
+youtrack.project_template = serokell.{{youtrackproject}}
+youtrack.host = issues.serokell.io
+youtrack.login = <your username>
+youtrack.password = <your password>
+```
+
+Usually, YouTrack accounts don't have login/password. To create
+credentials, go to https://issues.serokell.io/users/me and click on "Update
+personal information and manage logins". Then, press "Add credentials" and
+enter login and password that you would like to use in the RC file above.
+
+If you have any issues with that step (or anything regarding this program
+whatsoever), don't hesitate to drop a line at #operations channel on Slack.
+
+Pull YouTrack issues: `bugwarrior-pull`. Mind that if you live in Russia,
+RKN currently blocks our issue tracker, so use a VPN. This will be fixed soon.
+
+If that works, there is one last step:
+
+```sh
+ln -s $(which serokellwarrior-hook) ~/.task/hooks/on-modify.serokellwarrior
+```
+
+Try clocking into some task and check if it's in `serokellwarrior-report`.
 
 ## Learn
 
-For managing Serokell tasks, one will only need to know the following commands:
+For managing Serokell tasks, one will only need the following commands:
 
 * `bugwarrior-pull` to sync with YouTrack
 * `task` to list all assigned tasks
 * `task /OPS-200/ start` to clock in
 * `task /OPS-200/ stop` to clock out
-* `serokell-report` to generate a report for today,
-  `serokell-report week` to generate a report for the last week,
-  `serokell-report yesterday - today` to generate a report for yesterday
-* `serokell-export` to export all clocked time that has not yet been exported
+* `task /OPS-200/ annotate "Message"` to add annotations
+* `serokellwarrior-report` to generate a report for today,
+  `serokellwarrior-report week` to generate a report for the last week,
+  `serokellwarrior-report yesterday - today` to generate a report for yesterday
+* `serokellwarrior-export` to export all clocked time that has not yet been exported
 
 You might also find visual reports like `timew day` and `task burndown` useful.
 
