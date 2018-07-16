@@ -18,7 +18,7 @@ def uuids_by_date(interval):
     
 def report(interval):
     for date, uuids in uuids_by_date(interval).items():
-        print('{} {}:'.format(calendar.month_abbr[date[1]], date[2]))
+        print('{} {:02d}:'.format(calendar.month_abbr[date[1]], date[2]))
 
         for uuid in uuids:
             task = taskwarrior.import_task(uuid)
