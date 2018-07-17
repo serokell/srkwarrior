@@ -1,12 +1,15 @@
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from functools import partial
 from serokellwarrior import import_json, project, taskwarrior
 
-def _utc_to_local(dt):
-    return dt.replace(tzinfo=timezone.utc).astimezone(tz=None)
+# Delta between UTC and time when tu-bot kicks in:
+grace_timedelta = timedelta(hours=7)
+
+def _utc_to_grace(dt):
+    return dt - grace_timedelta
 
 def parse_datetime(s):
-    return _utc_to_local(datetime.strptime(s, '%Y%m%dT%H%M%SZ'))
+    return _utc_to_grace(datetime.strptime(s, '%Y%m%dT%H%M%SZ'))
 
 PAIR_TAG_DELIMETER = '@=>'
 
