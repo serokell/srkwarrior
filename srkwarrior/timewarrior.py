@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from functools import partial
-from serokellwarrior import import_json, project, taskwarrior
+from srkwarrior import import_json, project, taskwarrior
 
 # Delta between UTC and time when tu-bot kicks in:
 grace_timedelta = timedelta(hours=7)

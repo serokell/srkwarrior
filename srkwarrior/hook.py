@@ -1,4 +1,4 @@
-from serokellwarrior import timewarrior
+from srkwarrior import timewarrior
 
 import json
 import subprocess

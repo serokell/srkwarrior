@@ -1,6 +1,6 @@
 from bugwarrior.config import load_config
 from bugwarrior.services.youtrack import YoutrackService as YoutrackParent 
-from serokellwarrior import section
+from srkwarrior import section
 
 import json
 import math

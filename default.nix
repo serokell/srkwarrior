@@ -2,7 +2,7 @@ with import <nixpkgs> {};
 with python3Packages;
 
 buildPythonApplication {
-  name = "serokellwarrior";
+  name = "srkwarrior";
   src = lib.cleanSource ./.;
 
   propagatedBuildInputs = [ bugwarrior ];

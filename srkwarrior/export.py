@@ -1,11 +1,11 @@
-from serokellwarrior import taskwarrior, timewarrior, youtrack
+from srkwarrior import taskwarrior, timewarrior, youtrack
 
 import subprocess
 
 def index_to_id(idx):
     return '@' + str(idx + 1)
 
-EXPORT_TAG = 'serokellwarrior_is_exported'
+EXPORT_TAG = 'srk_is_exported'
 
 def main():
     service = youtrack.service()

@@ -17,22 +17,22 @@ $ task /OPS-200/ start # Clock in
 $ task /OPS-200/ stop # Clock out
 ```
 
-Generate reports via `serokellwarrior-report` that can be annotated
+Generate reports via `srkwarrior-report` that can be annotated
 with subitems:
 ```sh  
 $ task /OPS-200/ annotate "Do this"
 $ task /OPS-200/ annotate "Do that"
-$ serokellwarrior-report
+$ srkwarrior-report
 May 7:
  * OPS-200 Expose deployment info
    - Do this
    - Do that
 ```
 
-Track time into YouTrack on `serokellwarrior-export`, very unlikely
+Track time into YouTrack on `srkwarrior-export`, very unlikely
 to clock anything twice:
 ```sh
-$ serokellwarrior-export
+$ srkwarrior-export
 ```
 
 ## Install
@@ -81,10 +81,10 @@ Pull YouTrack issues: `bugwarrior-pull`
 If that works, there is one last step:
 
 ```sh
-ln -s $(which serokellwarrior-hook) ~/.task/hooks/on-modify.serokellwarrior
+ln -s $(which srkwarrior-hook) ~/.task/hooks/on-modify.srkwarrior
 ```
 
-Try clocking into some task and check if it's in `serokellwarrior-report`.
+Try clocking into some task and check if it's in `srkwarrior-report`.
 
 ## Learn
 
@@ -95,10 +95,10 @@ For managing Serokell tasks, one will only need the following commands:
 * `task /OPS-200/ start` to clock in
 * `task /OPS-200/ stop` to clock out
 * `task /OPS-200/ annotate "Message"` to add annotations
-* `serokellwarrior-report` to generate a report for today,
-  `serokellwarrior-report week` to generate a report for the last week,
-  `serokellwarrior-report yesterday - today` to generate a report for yesterday
-* `serokellwarrior-export` to export all clocked time that has not yet been exported
+* `srkwarrior-report` to generate a report for today,
+  `srkwarrior-report week` to generate a report for the last week,
+  `srkwarrior-report yesterday - today` to generate a report for yesterday
+* `srkwarrior-export` to export all clocked time that has not yet been exported
 
 You might also find visual reports like `timew day` and `task burndown` useful.
 
@@ -152,15 +152,15 @@ integrate with Nix easily without long build times.
 * Bugwarrior doesn't currently implement token-based authentication for
   YouTrack, so you will need to create a login/password pair. If you're not
   sure how, ask the operations team.
-* `serokellwarrior-export` tool is not safe if anything else modifies
-  Timewarrior DB while it runs. The problem here is that Timewarrior entries,
-  unlike Taskwarrior, do not have UUIDs, only relative IDs. This can be
-  resolved either by sending a patch to Timewarrior that adds UUIDs, or by
-  locking the database while export tool runs (for example, by moving the
-  directory to another place, and then moving it back, or sending patch to
-  Timewarrior that makes it lock-aware).  This issue has high priority as it
-  has potential to cause data loss.
-* `serokellwarrior-report` tool presumes that days are the smallest report
+* `srkwarrior-export` tool is not safe if anything else modifies Timewarrior DB
+  while it runs. The problem here is that Timewarrior entries, unlike
+  Taskwarrior, do not have UUIDs, only relative IDs. This can be resolved
+  either by sending a patch to Timewarrior that adds UUIDs, or by locking the
+  database while export tool runs (for example, by moving the directory to
+  another place, and then moving it back, or sending patch to Timewarrior that
+  makes it lock-aware).  This issue has high priority as it has potential to
+  cause data loss.
+* `srkwarrior-report` tool presumes that days are the smallest report
   granularity for annotations. It means that if you generate a report that is
   supposed to only include the last 4 hours of work, it will also include
   annotations for the rest of the day. Fixing this would mean reimplementing

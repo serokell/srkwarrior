@@ -1,4 +1,4 @@
-from serokellwarrior import taskwarrior, timewarrior
+from srkwarrior import taskwarrior, timewarrior
 
 import calendar
 import sys

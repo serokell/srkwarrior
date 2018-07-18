@@ -1,13 +1,13 @@
 from setuptools import setup
 
 setup(
-    name='serokellwarrior',
-    packages=['serokellwarrior'],
+    name='srkwarrior',
+    packages=['srkwarrior'],
     entry_points={
         'console_scripts': [
-            'serokellwarrior-export=serokellwarrior.export:main',
-            'serokellwarrior-hook=serokellwarrior.hook:main',
-            'serokellwarrior-report=serokellwarrior.report:main',
+            'srkwarrior-export=srkwarrior.export:main',
+            'srkwarrior-hook=srkwarrior.hook:main',
+            'srkwarrior-report=srkwarrior.report:main',
         ],
     },
     install_requires=['bugwarrior']

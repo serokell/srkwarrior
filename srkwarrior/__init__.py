@@ -3,10 +3,10 @@ import os
 import subprocess
 
 def project():
-    return os.getenv('SEROKELLWARRIOR_PROJECT', 'serokell')
+    return os.getenv('SRKWARRIOR_PROJECT', 'serokell')
 
 def section():
-    return os.getenv('SEROKELLWARRIOR_SECTION', 'serokell')
+    return os.getenv('SRKWARRIOR_SECTION', 'serokell')
 
 def import_json(args):
     return json.loads(subprocess.check_output(args))
