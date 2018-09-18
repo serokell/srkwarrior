@@ -7,6 +7,7 @@ Integration with Bugwarrior, Taskwarrior and Timewarrior.
 ## Features
 
 Export assigned YouTrack issues into local Taskwarrior DB:
+
 ```sh
 $ bugwarrior-pull # Synchronize YouTrack with local DB
 $ task # List tasks
@@ -14,6 +15,7 @@ $ task project:serokell.AD # List tasks in a project
 ```
 
 Integrate Taskwarrior with Timewarrior for time tracking:
+
 ```sh
 $ task /OPS-200/ start # Clock in
 $ task /OPS-200/ stop # Clock out
@@ -21,6 +23,7 @@ $ task /OPS-200/ stop # Clock out
 
 Generate reports via `srkwarrior-report` that can be annotated
 with subitems:
+
 ```sh  
 $ task /OPS-200/ annotate "Do this"
 $ task /OPS-200/ annotate "Do that"
@@ -31,8 +34,9 @@ May 7:
    - Do that
 ```
 
-Track time into YouTrack on `srkwarrior-export`, very unlikely
-to clock anything twice:
+Track time into YouTrack on `srkwarrior-export` (idempotent, will never enter
+anything twice):
+
 ```sh
 $ srkwarrior-export
 ```
