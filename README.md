@@ -1,3 +1,5 @@
+![Logo](logo.svg)
+
 # Serokellwarrior
 
 Integration with Bugwarrior, Taskwarrior and Timewarrior.
