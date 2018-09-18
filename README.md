@@ -166,9 +166,3 @@ integrate with Nix easily without long build times.
   annotations for the rest of the day. Fixing this would mean reimplementing
   Timewarrior's interval parser, so unlikely to happen. People who send reports
   only once a day are not affected :-)
-
-## Distribution
-
-This package is supposed to be private, so that we don't leak the way Serokell
-handles time tracking, reports and such to the world. This package is unlikely
-to be of much use to anyone outside of the company anyway.
