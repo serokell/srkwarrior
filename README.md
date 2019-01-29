@@ -21,21 +21,8 @@ $ task /OPS-200/ start # Clock in
 $ task /OPS-200/ stop # Clock out
 ```
 
-Generate reports via `srkwarrior-report` that can be annotated
-with subitems:
-
-```sh  
-$ task /OPS-200/ annotate "Do this"
-$ task /OPS-200/ annotate "Do that"
-$ srkwarrior-report
-May 7:
- * OPS-200 Expose deployment info
-   - Do this
-   - Do that
-```
-
-Track time into YouTrack on `srkwarrior-export` (idempotent, will never enter
-anything twice):
+Track time into YouTrack on `srkwarrior-export` (idempotent, will never, ever
+clock anything twice):
 
 ```sh
 $ srkwarrior-export
@@ -90,8 +77,6 @@ If that works, there is one last step:
 ln -s $(which srkwarrior-hook) ~/.task/hooks/on-modify.srkwarrior
 ```
 
-Try clocking into some task and check if it's in `srkwarrior-report`.
-
 ## Learn
 
 For managing Serokell tasks, one will only need the following commands:
@@ -101,9 +86,6 @@ For managing Serokell tasks, one will only need the following commands:
 * `task /OPS-200/ start` to clock in
 * `task /OPS-200/ stop` to clock out
 * `task /OPS-200/ annotate "Message"` to add annotations
-* `srkwarrior-report` to generate a report for today,
-  `srkwarrior-report week` to generate a report for the last week,
-  `srkwarrior-report yesterday - today` to generate a report for yesterday
 * `srkwarrior-export` to export all clocked time that has not yet been exported
 
 You might also find visual reports like `timew day` and `task burndown` useful.
@@ -149,12 +131,8 @@ integrate with Nix easily without long build times.
 [bugwarrior-youtrack]: https://github.com/ralphbean/bugwarrior/blob/develop/bugwarrior/services/youtrack.py
 [youtrack-work-item-api]: https://www.jetbrains.com/help/youtrack/standalone/Create-New-Work-Item.html
 
-## Missing features
+## Quirks
 
-* Sending reports to Slack is currently not implemented. This is not urgent
-  because Serokellwarrior is new and one is expected to eyeball reports before
-  sending them to #team-updates channel. This feature will be added once report
-  generation is proven to be reliable, though.
 * Bugwarrior doesn't currently implement token-based authentication for
   YouTrack, so you will need to create a login/password pair. If you're not
   sure how, ask the operations team.
@@ -166,9 +144,3 @@ integrate with Nix easily without long build times.
   another place, and then moving it back, or sending patch to Timewarrior that
   makes it lock-aware).  This issue has high priority as it has potential to
   cause data loss.
-* `srkwarrior-report` tool presumes that days are the smallest report
-  granularity for annotations. It means that if you generate a report that is
-  supposed to only include the last 4 hours of work, it will also include
-  annotations for the rest of the day. Fixing this would mean reimplementing
-  Timewarrior's interval parser, so unlikely to happen. People who send reports
-  only once a day are not affected :-)
